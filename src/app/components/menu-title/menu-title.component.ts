@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-menu-title',
   templateUrl: './menu-title.component.html',
-  styleUrls: ['./menu-title.component.sass']
+  styleUrls: ['./menu-title.component.sass', './menu-title.responsive.component.sass']
 })
 export class MenuTitleComponent implements OnInit {
 
