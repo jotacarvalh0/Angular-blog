@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {dataFake} from '../../data/dataFake'
 
 @Component({
   selector: 'app-content',
@@ -7,13 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  photoCover:string = "https://sm.ign.com/t/ign_br/screenshot/default/hogwarts-legacy-w-szd8_228758_tgj8.960.jpg"
-  contentTitle:string = "Hogwarts Legacy para PS4 com 12% de desconto!"
-  contentDescription:string = "Jogo é um dos mais desejados pelos gamers e oferece experiência imersiva no mundo Harry Potter"
+  photoCover:string = ""
+  contentTitle:string = ""
+  contentDescription:string = ""
+  private id:string | null = "0"
 
-  constructor() { }
+  constructor(
+    private route:ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe( value =>
+      this.id = value.get("id")
+    )
   }
+
+  setValuesToComponent(id:string | null){
+    const result = dataFake.filter(article => article.id == id)[0]
+
+    this.contentTitle = result.title
+    this.contentDescription = result.description
+    this.photoCover = result.photoCover
+
+  }
+  
 
 }
